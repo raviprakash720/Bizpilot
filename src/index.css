@@ -1,0 +1,223 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* BizPilot Brand Colors */
+    --brand-primary: 231 60% 30%; /* Deep royal blue #1E2A78 */
+    --brand-accent: 244 100% 70%; /* Electric violet #6C63FF */
+    --brand-highlight: 180 69% 58%; /* Cyan #4ADEDE */
+    --brand-light: 210 20% 98%; /* Background #F9FAFB */
+    
+    /* Core Theme Colors */
+    --background: 210 20% 98%;
+    --foreground: 231 60% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 231 60% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 231 60% 15%;
+
+    --primary: 231 60% 30%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 244 100% 70%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 210 20% 95%;
+    --muted-foreground: 231 30% 45%;
+
+    --accent: 180 69% 58%;
+    --accent-foreground: 231 60% 15%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 231 30% 90%;
+    --input: 231 30% 90%;
+    --ring: 244 100% 70%;
+
+    --radius: 1rem;
+
+    /* Gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(231, 60%, 30%) 0%, hsl(244, 100%, 70%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(244, 100%, 70%) 0%, hsl(180, 69%, 58%) 100%);
+    --gradient-subtle: linear-gradient(180deg, hsl(210, 20%, 98%) 0%, hsl(244, 100%, 98%) 100%);
+    --gradient-glass: linear-gradient(135deg, rgba(108, 99, 255, 0.1) 0%, rgba(74, 222, 222, 0.1) 100%);
+    --gradient-glow: radial-gradient(circle at 50% 50%, rgba(108, 99, 255, 0.2), transparent 70%);
+    
+    /* Shadows */
+    --shadow-glass: 0 8px 32px 0 rgba(30, 42, 120, 0.1);
+    --shadow-glow: 0 0 40px rgba(108, 99, 255, 0.3);
+    --shadow-glow-strong: 0 0 60px rgba(108, 99, 255, 0.5);
+    --shadow-card: 0 4px 16px rgba(30, 42, 120, 0.08);
+    
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+
+  .dark {
+    --background: 231 60% 8%;
+    --foreground: 210 20% 98%;
+
+    --card: 231 50% 12%;
+    --card-foreground: 210 20% 98%;
+
+    --popover: 231 50% 12%;
+    --popover-foreground: 210 20% 98%;
+
+    --primary: 244 100% 70%;
+    --primary-foreground: 231 60% 8%;
+
+    --secondary: 231 50% 18%;
+    --secondary-foreground: 210 20% 98%;
+
+    --muted: 231 40% 15%;
+    --muted-foreground: 210 20% 70%;
+
+    --accent: 180 69% 58%;
+    --accent-foreground: 231 60% 8%;
+
+    --destructive: 0 62.8% 50%;
+    --destructive-foreground: 210 20% 98%;
+
+    --border: 231 40% 20%;
+    --input: 231 40% 20%;
+    --ring: 180 69% 58%;
+    
+    --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+    --shadow-glow: 0 0 40px rgba(74, 222, 222, 0.3);
+    --shadow-card: 0 4px 16px rgba(0, 0, 0, 0.3);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-poppins;
+  }
+}
+
+@layer utilities {
+  .glass-card {
+    @apply bg-white/70 dark:bg-card/70 backdrop-blur-xl border border-white/20 dark:border-white/10;
+    box-shadow: var(--shadow-glass);
+  }
+
+  .glass-panel {
+    @apply bg-white/40 dark:bg-card/40 backdrop-blur-2xl border border-white/30 dark:border-white/10;
+    box-shadow: var(--shadow-glass);
+  }
+
+  .gradient-hero {
+    background: var(--gradient-hero);
+  }
+
+  .gradient-card {
+    background: var(--gradient-card);
+  }
+
+  .gradient-glass {
+    background: var(--gradient-glass);
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent;
+  }
+
+  .hover-lift {
+    @apply transition-all duration-300 hover:-translate-y-2 hover:shadow-xl;
+  }
+
+  .hover-glow {
+    @apply transition-all duration-300;
+  }
+
+  .hover-glow:hover {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .hover-glow-strong {
+    @apply transition-all duration-300;
+  }
+
+  .hover-glow-strong:hover {
+    box-shadow: var(--shadow-glow-strong);
+    transform: translateY(-2px);
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-pulse-slow {
+    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  .animate-bounce-subtle {
+    animation: bounce-subtle 2s ease-in-out infinite;
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.6s ease-out;
+  }
+
+  .animate-slide-up {
+    animation: slide-up 0.5s ease-out;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes bounce-subtle {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
